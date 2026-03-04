@@ -1,1 +1,2 @@
-web: python manage.py migrate && python manage.py collectstatic --noinput && gunicorn myshop.wsgi:application --bind 0.0.0.0:$PORT
+
+web: bash -c "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn myshop.wsgi:application --bind 0.0.0.0:$PORT"

@@ -1,0 +1,12 @@
+{% extends 'shop/base.html' %}
+{% block content %}
+<div class="card" style="margin: 4rem auto; max-width: 400px; text-align: center;">
+    <h2>Register</h2>
+    <form method="post" action="{% url 'shop:register' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">Sign Up</button>
+    </form>
+    <p style="margin-top: 1rem;"><a href="{% url 'shop:login' %}">Already have an account? Login</a></p>
+</div>
+{% endblock %}

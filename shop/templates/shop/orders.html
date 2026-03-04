@@ -1,0 +1,24 @@
+{% extends 'shop/base.html' %}
+{% block content %}
+<h1>My Orders</h1>
+{% for order in orders %}
+<div class="card">
+    <div class="flex" style="border-bottom: 1px solid #E5E7EB; padding-bottom: 0.5rem; margin-bottom: 1rem;">
+        <strong>Order #{{ order.id }} - {{ order.created_at|date }}</strong>
+        <span class="btn" style="background:#DBEAFE; color:#1E40AF; padding:0.25rem 0.5rem; font-size:0.75rem;">{{
+            order.get_status_display }}</span>
+    </div>
+    <table>
+        {% for item in order.items.all %}
+        <tr>
+            <td>{{ item.quantity }} x {{ item.product.name }}</td>
+            <td style="text-align:right;">${{ item.cost|floatformat:2 }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div style="text-align: right; font-weight: bold; margin-top: 1rem;">Total: ${{ order.total_amount }}</div>
+</div>
+{% empty %}
+<div class="card">You have no orders.</div>
+{% endfor %}
+{% endblock %}
